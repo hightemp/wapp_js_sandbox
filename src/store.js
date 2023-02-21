@@ -114,20 +114,6 @@ export default createStore({
             state.bShowLoader = false
         },
 
-        fnExportDatabase({ commit, state, dispatch, getters }) {
-            fnSaveFile('tasks-database', JSON.stringify(state.oDatabase, null, 4))
-        },
-        fnImportDatabase({ commit, state, dispatch, getters }, sData) {
-            commit('fnUpdateDatabase', JSON.parse(sData))
-        },
-
-        fnExportRepos({ commit, state, dispatch, getters }) {
-            fnSaveFile('tasks-repos', JSON.stringify(state.aReposList, null, 4))
-        },
-        fnImportRepos({ commit, state, dispatch, getters }, sData) {
-            commit('fnUpdateRepos', JSON.parse(sData))
-        },
-
         fnUpdateFormVar(state, { sFormName, sFieldName, mV }) {
             state.oForms[sFormName][sFieldName] = mV
         },
@@ -168,6 +154,20 @@ export default createStore({
         }
     },
     actions: {
+        fnExportDatabase({ commit, state, dispatch, getters }) {
+            fnSaveFile('js-sandbox-database', JSON.stringify(state.oDatabase, null, 4))
+        },
+        fnImportDatabase({ commit, state, dispatch, getters }, sData) {
+            commit('fnUpdateDatabase', JSON.parse(sData))
+        },
+
+        fnExportRepos({ commit, state, dispatch, getters }) {
+            fnSaveFile('js-sandbox-repos', JSON.stringify(state.aReposList, null, 4))
+        },
+        fnImportRepos({ commit, state, dispatch, getters }, sData) {
+            commit('fnUpdateRepos', JSON.parse(sData))
+        },
+
         fnGetFieldValue: ({ state, getters }) => (sFormName, sFieldName) => {
             return getters.fnGetFieldValue(sFormName, sFieldName)
         },
